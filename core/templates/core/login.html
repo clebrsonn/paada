@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In form</title>
+    <link rel="stylesheet" type="text/css" href="{% static "core/css/login_style.css" %}">
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<div id="main" class="container">
+    {% load widget_tweaks %}
+    <form name="loginform" id="loginform" action="{% url 'login_url' %}" method="POST" class="wpl-track-me">
+        {% csrf_token %}
+        <p class="login-username">
+            {% render_field form.username id="user_login" class+="input" placeholder="Digite seu usuário" %}
+        </p>
+        <p class="login-password">
+            {% render_field form.password id="user_pass" type="password" class+="input" placeholder="Digite sua Senha" %}
+        </p>
+        <p class="login-submit">
+            <input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="Log in"/>
+        </p>
+         <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+</div>
+</body>
+</html>
