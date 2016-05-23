@@ -18,5 +18,7 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^$', views.home, name="core")
+    url(r'^$', views.home, name="core"),
+    url(r'^listar_disciplinas/$', views.listar_disciplinas, name="listar_disciplinas"),
+
 ]

@@ -2,8 +2,8 @@
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.html import mark_safe
-
+from django.utils.html import format_html
+from django.core.urlresolvers import reverse
 
 class AnoLetivo(models.Model):
     """Classe que representa um Ano Letivo."""
@@ -65,4 +65,5 @@ class Aluno(Pessoa):
 
 
     def adicionar_nota(self):
-        return mark_safe(u"<button class='button' href=''>Adicionar notas</button>")
+        return format_html("<a class='button' href='{link}'>Adicionar notas</a>",
+                    link=reverse("core:listar_disciplinas"))

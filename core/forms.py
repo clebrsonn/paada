@@ -10,9 +10,9 @@ class AnoLetivoForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(AnoLetivoForm, self).__init__(*args,**kwargs)
-        self.fields['titulo'].initial = datetime.now().year
-        self.fields['titulo'].widget.attrs['readonly'] = True
+        self.fields[u'titulo'].initial = datetime.now().year
+        self.fields[u'titulo'].widget.attrs[u'readonly'] = True
 
     class Meta:
         model = AnoLetivo
-        fields = ['titulo']
+        fields = [u'titulo']
