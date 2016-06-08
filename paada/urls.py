@@ -26,5 +26,5 @@ urlpatterns = [
     url('^login/', auth_views.login, {'template_name': 'core/login.html'}, name="login_url"),
     url('^logout/', auth_views.logout),
 
-    url('^core/',  include('core.urls', namespace="core")),
+    url('^',  include('core.urls', namespace="core")),
 ]

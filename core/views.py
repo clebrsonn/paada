@@ -4,8 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-    return render(request, content="Login Efetuado com sucesso")
-
+    return render(request, "core/index.html")
 
 @login_required
 def listar_disciplinas(request):
