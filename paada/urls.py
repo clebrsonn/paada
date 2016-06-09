@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^ajax_select/', include(ajax_select_urls)),
 
     url('^login/', auth_views.login, {'template_name': 'core/login.html'}, name="login_url"),
-    url('^logout/', auth_views.logout),
+    url('^logout/', auth_views.logout_then_login, name="logout_url"),
 
     url('^',  include('core.urls', namespace="core")),
 ]

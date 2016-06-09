@@ -1,0 +1,46 @@
+<!-- Barra de navegação do topo -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <!-- Cabecalho da barra de navegação -->
+    <div class="navbar-header">
+        <a class="navbar-brand" href="index.html">
+            PAADA - Plataforma de Acompanhamento e Análise de Desempenho do Aluno
+        </a>
+    </div>
+    <!-- /.Cabecalho da barra de navegação -->
+
+    <!-- Botões da bara de navegação -->
+    <ul class="nav navbar-top-links navbar-right">
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-alerts">
+                <li>
+                    <a href="#">
+                        <div>
+                            <i class="fa fa-envelope fa-fw"></i> Mensagem do Professor
+                            <span class="pull-right text-muted small"> 1 dia atrás</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.dropdown-alerts -->
+        </li>
+        <!-- /.dropdown -->
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li>
+                    <a href="{% url "logout_url" %}">
+                        <i class="fa fa-sign-out fa-fw"></i> Sair
+                    </a>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links -->
+</nav>
