@@ -20,4 +20,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.home, name="home"),
+    url(r'^escolher_disciplina/$', views.escolher_disciplina, name="escolher_disciplina"),
 ]

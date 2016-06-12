@@ -1,11 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
-from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from django.template.context import RequestContext
 
-from dal.autocomplete import Select2QuerySetView
-
-from .models import Responsavel, Professor, AnoLetivo, Turma
+from .autocomplete_views import * # importando Autocompletes
 
 @login_required
 def home(request):
@@ -13,50 +11,14 @@ def home(request):
     if user_group.name == "pais":
         return render(request, "core/index_responsaveis.html")
     elif user_group.name == "professores":
-        return render(request, "core/index_professores.html")
+        return redirect(reverse("escolher_disciplina",urlconf="core.urls"))
     elif user_group.name == "Administrador":
         return redirect("/paada_admin")
 
 
-#################
-# autocompletes #
-#################
-class ResponsaveisAutoComplete(Select2QuerySetView):
-    def get_queryset(self):
-        qs = Responsavel.objects.all()
-        if self.q:
-            qs = qs.filter(nome__istartswith=self.q)
-        return qs
-
-
-class UsuariosAutoComplete(Select2QuerySetView):
-    def get_queryset(self):
-        usuario1 = list(Responsavel.objects.values_list('usuario'))
-        usuario2 = list(Professor.objects.values_list('usuario'))
-        usuarios_id = [pk[0] for pk in usuario1+usuario2]
-        qs = User.objects.exclude(pk__in=usuarios_id)
-        if self.q:
-            qs = qs.filter(username__istartswith=self.q)
-        return qs
-
-
-class AnosLetivosAutoComplete(Select2QuerySetView):
-    def get_queryset(self):
-        qs = AnoLetivo.objects.all()
-        if self.q:
-            qs = qs.filter(username__istartswith=self.q)
-        return qs
-
-class ProfessoresAutoComplete(Select2QuerySetView):
-    def get_queryset(self):
-        qs = Professor.objects.all()
-        if self.q:
-            qs = qs.filter(nome__istartswith=self.q)
-        return qs
-
-class TurmasAutoComplete(Select2QuerySetView):
-    def get_queryset(self):
-        qs = Turma.objects.all()
-        if self.q:
-            qs = qs.filter(nome_turma__istartswith=self.q)
-        return qs
+@login_required
+def escolher_disciplina(request):
+    professor = request.user.professor
+    disciplinas = professor.disciplinas.all()
+    context = RequestContext(request,{'disciplinas': disciplinas})
+    return render(request, "core/escolher_disciplina.html", context)

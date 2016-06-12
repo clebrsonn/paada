@@ -36,7 +36,7 @@ class AlunoAdmin(admin.ModelAdmin):
 
 @admin.register(Disciplina)
 class DisciplinaAdmin(admin.ModelAdmin):
-    search_fields = (u"nome_discsiplina", u"professor", u"turma")
+    search_fields = (u"nome_disciplina", u"professor", u"turma")
     form = DisciplinaForm
 
 

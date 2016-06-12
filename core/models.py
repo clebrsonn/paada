@@ -71,12 +71,16 @@ class Disciplina(models.Model):
     turma = models.ForeignKey(u"Turma", related_name=u"disciplinas")
     professor = models.ForeignKey(u"Professor", related_name=u"disciplinas")
 
-    def __unicode__(self):
-        return u"{nome_disciplina}".format(nome_disciplina=self.nome_disciplina)
-
     class Meta:
         verbose_name = u"Disciplina"
         verbose_name_plural = u"Disciplinas"
+
+    def __unicode__(self):
+        return u"{nome_disciplina}".format(nome_disciplina=self.nome_disciplina)
+
+    def get_disciplina_alunos_url(self):
+        return "/disciplina_alunos/{pk}".format(pk=self.pk)
+
 
 
 class Turma(models.Model):
@@ -95,11 +99,19 @@ class Turma(models.Model):
 class Notas(models.Model):
     Aluno = models.ForeignKey("Aluno")
     Disciplina = models.ForeignKey("Disciplina")
-    nota1 = models.DecimalField(blank=True, verbose_name=u"Nota 1")
-    nota2 = models.DecimalField(blank=True, verbose_name=u"Nota 2")
-    nota3 = models.DecimalField(blank=True, verbose_name=u"Nota 3")
-    nota4 = models.DecimalField(blank=True, verbose_name=u"Nota 4")
-    nota5 = models.DecimalField(blank=True, verbose_name=u"Nota 5")
-    nota6 = models.DecimalField(blank=True, verbose_name=u"Nota 6")
-    nota7 = models.DecimalField(blank=True, verbose_name=u"Nota 7")
-    nota8 = models.DecimalField(blank=True, verbose_name=u"Nota 8")
+    nota1 = models.DecimalField(blank=True, verbose_name=u"Nota 1", max_digits=3,
+                                decimal_places=2)
+    nota2 = models.DecimalField(blank=True, verbose_name=u"Nota 2", max_digits=3,
+                                decimal_places=2)
+    nota3 = models.DecimalField(blank=True, verbose_name=u"Nota 3", max_digits=3,
+                                decimal_places=2)
+    nota4 = models.DecimalField(blank=True, verbose_name=u"Nota 4", max_digits=3,
+                                decimal_places=2)
+    nota5 = models.DecimalField(blank=True, verbose_name=u"Nota 5", max_digits=3,
+                                decimal_places=2)
+    nota6 = models.DecimalField(blank=True, verbose_name=u"Nota 6", max_digits=3,
+                                decimal_places=2)
+    nota7 = models.DecimalField(blank=True, verbose_name=u"Nota 7", max_digits=3,
+                                decimal_places=2)
+    nota8 = models.DecimalField(blank=True, verbose_name=u"Nota 8", max_digits=3,
+                                decimal_places=2)
