@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib import admin
-from ajax_select import make_ajax_form
 
-from .models import AnoLetivo, Professor, Responsavel, Aluno
-from .forms import AnoLetivoForm
+from .models import AnoLetivo, Professor, Responsavel, Aluno, Disciplina, Turma
+
+from .forms import AnoLetivoForm, AlunoForm, ProfessorForm, ResponsavelForm, TurmaForm,\
+    DisciplinaForm
 
 
 @admin.register(AnoLetivo)
@@ -17,24 +18,29 @@ class AnoLetivoAdmin(admin.ModelAdmin):
 
 @admin.register(Professor)
 class ProfessorAdmin(admin.ModelAdmin):
+    form = ProfessorForm
     pass
 
 
 @admin.register(Responsavel)
 class ResponsavelAdmin(admin.ModelAdmin):
     search_fields = (u"nome",)
-    pass
+    form = ResponsavelForm
 
 
 @admin.register(Aluno)
 class AlunoAdmin(admin.ModelAdmin):
-    list_display = (u"nome", u"adicionar_nota")
+    list_display = (u"nome",)
+    form = AlunoForm
 
-    form = make_ajax_form(Aluno, {
-        u"responsavel": u"responsavel"
-    })
-    class Media:
-        # customização da tela de inserção e edição de alunos
-        css = {
-            u"all": (u"core/css/aluno.css",)
-        }
+
+@admin.register(Disciplina)
+class DisciplinaAdmin(admin.ModelAdmin):
+    search_fields = (u"nome_discsiplina", u"professor", u"turma")
+    form = DisciplinaForm
+
+
+@admin.register(Turma)
+class TurmaAdmin(admin.ModelAdmin):
+    search_fields = (u"nome_turma", u"ano_letivo")
+    form = TurmaForm

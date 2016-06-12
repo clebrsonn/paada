@@ -18,8 +18,13 @@
 <body>
 
 <div id="wrapper">
-    {% include "core/top_navbar.html" %}
-    {% include "core/left_side_menu.html" %}
+    {% include "core/navbar_topo.html" %}
+
+    {% if request.user.groups.first.name == "pais" %}
+        {% include "core/menu_lateral_responsaveis.html" %}
+    {% elif request.user.groups.first.name == "professores" %}
+        {% include "core/menu_lateral_professores.html" %}
+    {% endif %}
 
     <div id="page-wrapper">
     {% block content %}{% endblock %}

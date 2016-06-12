@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from ajax_select import urls as ajax_select_urls
 
+from core.views import ResponsaveisAutoComplete, UsuariosAutoComplete,\
+    AnosLetivosAutoComplete, ProfessoresAutoComplete, TurmasAutoComplete
+
 urlpatterns = [
     url(r'^paada_admin/', admin.site.urls),
 
@@ -27,4 +30,15 @@ urlpatterns = [
     url('^logout/', auth_views.logout_then_login, name="logout_url"),
 
     url('^',  include('core.urls', namespace="core")),
+
+    url(r'^responsaveis-autocomplete/$', ResponsaveisAutoComplete.as_view(),
+    name="responsaveis-autocomplete"),
+    url(r'^usuarios-autocomplete/$', UsuariosAutoComplete.as_view(),
+    name="usuarios-autocomplete"),
+    url(r'^anosletivos-autocomplete/$', AnosLetivosAutoComplete.as_view(),
+    name="anosletivos-autocomplete"),
+    url(r'^professores-autocomplete/$', ProfessoresAutoComplete.as_view(),
+    name="professores-autocomplete"),
+    url(r'^turmas-autocomplete/$', TurmasAutoComplete.as_view(),
+    name="turmas-autocomplete"),
 ]
