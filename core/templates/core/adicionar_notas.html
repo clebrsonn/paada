@@ -1,0 +1,32 @@
+{% extends "core/base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Inserção de Notas</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Disciplina - {{ disciplina.nome_disciplina }} - {{ aluno.nome }}</h3>
+        </div>
+    </div>
+<br>
+    <div class="row">
+        <form class="form-inline" action="/adicionar_notas/{{ disciplina.pk }}/{{ aluno.pk }}/" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group nota">
+                    <label for="exampleInputName2">{{ field.label }}</label>
+                    {% render_field field class+="form-control" type="text" %}
+                </div>
+            {% endfor %}
+            <div>
+                <button type="submit" class="btn btn-success salvar_notas">Salvar
+                    Notas</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

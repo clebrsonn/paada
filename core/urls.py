@@ -21,4 +21,8 @@ from . import views
 urlpatterns = [
     url(r'^$', views.home, name="home"),
     url(r'^escolher_disciplina/$', views.escolher_disciplina, name="escolher_disciplina"),
+    url(r'^alunos_disciplina/(?P<disciplina_id>[0-9]+)/$', views.alunos_disciplina,
+        name="alunos_disciplina"),
+    url(r'^adicionar_notas/(?P<disciplina_id>[0-9]+)/(?P<aluno_id>[0-9]+)/$',
+        views.adicionar_notas, name="alunos_disciplina"),
 ]

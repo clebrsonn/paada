@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from datetime import datetime
+
 from django import forms
 from django.contrib.auth.models import User
 from dal.autocomplete import ModelSelect2
-from .models import AnoLetivo, Aluno, Responsavel,Professor, Turma, Disciplina
+
+from .models import AnoLetivo, Aluno, Responsavel, Professor, Turma, Disciplina, Notas
 
 
 class AnoLetivoForm(forms.ModelForm):
@@ -72,3 +74,10 @@ class DisciplinaForm(forms.ModelForm):
     class Meta:
         model = Disciplina
         fields = ('__all__')
+
+
+class NotasForm(forms.ModelForm):
+    class Meta:
+        model = Notas
+        fields = ("nota1","nota2","nota3","nota4","nota5","nota6","nota7","nota8")
+
