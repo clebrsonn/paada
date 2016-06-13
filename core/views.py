@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.template.context import RequestContext
+from django.contrib import messages
 
 from .autocomplete_views import * # importando Autocompletes
 from .models import Disciplina, Aluno, Notas
@@ -29,7 +30,6 @@ def escolher_disciplina(request):
 def alunos_disciplina(request, disciplina_id):
     disciplina = Disciplina.objects.get(pk=disciplina_id)
     alunos = disciplina.turma.alunos.all()
-
     context = RequestContext(request,{'disciplina': disciplina, 'alunos': alunos})
     return render(request, "core/alunos_disciplina.html", context)
 
@@ -43,6 +43,11 @@ def adicionar_notas(request, disciplina_id, aluno_id):
         form = NotasForm(request.POST, instance=notas)
         if form.is_valid():
             form.save()
+            mensagem = "Notas de {nome_aluno} salvas com sucesso".format(
+                nome_aluno=aluno.nome)
+            messages.add_message(request,messages.SUCCESS, mensagem,
+                                 extra_tags='dragonball')
+            return redirect("core:alunos_disciplina", disciplina_id=disciplina.pk)
     else:
         form = NotasForm(instance=notas)
 
