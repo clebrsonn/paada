@@ -100,18 +100,18 @@ class Notas(models.Model):
     aluno = models.ForeignKey("Aluno")
     disciplina = models.ForeignKey("Disciplina")
     nota1 = models.DecimalField(null=True, blank=True, verbose_name=u"Nota 1",
-                                max_digits=3,decimal_places=2)
+                                max_digits=4,decimal_places=2)
     nota2 = models.DecimalField(null=True, blank=True, verbose_name=u"Nota 2",
-                                max_digits=3, decimal_places=2)
+                                max_digits=4, decimal_places=2)
     nota3 = models.DecimalField(null=True, blank=True, verbose_name=u"Nota 3",
-                                max_digits=3, decimal_places=2)
+                                max_digits=4, decimal_places=2)
     nota4 = models.DecimalField(null=True, blank=True, verbose_name=u"Nota 4",
-                                max_digits=3, decimal_places=2)
+                                max_digits=4, decimal_places=2)
     nota5 = models.DecimalField(null=True,blank=True, verbose_name=u"Nota 5",
-                                max_digits=3, decimal_places=2)
+                                max_digits=4, decimal_places=2)
     nota6 = models.DecimalField(null=True, blank=True, verbose_name=u"Nota 6",
-                                max_digits=3, decimal_places=2)
+                                max_digits=4, decimal_places=2)
     nota7 = models.DecimalField(null=True, blank=True, verbose_name=u"Nota 7",
-                                max_digits=3, decimal_places=2)
+                                max_digits=4, decimal_places=2)
     nota8 = models.DecimalField(null=True, blank=True, verbose_name=u"Nota 8",
-                                max_digits=3, decimal_places=2)
+                                max_digits=4, decimal_places=2)
