@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.template.context import RequestContext
 from django.contrib import messages
+from django.utils import timezone
+
 
 from .autocomplete_views import * # importando Autocompletes
 from .models import Disciplina, Aluno, Notas
@@ -12,7 +14,7 @@ from .forms import NotasForm
 def home(request):
     user_group = request.user.groups.first()
     if user_group.name == "pais":
-        return render(request, "core/index_responsaveis.html")
+        return redirect(reverse("acompanhamento_academico",urlconf="core.urls"))
     elif user_group.name == "professores":
         return redirect(reverse("escolher_disciplina",urlconf="core.urls"))
     elif user_group.name == "Administrador":
@@ -54,3 +56,21 @@ def adicionar_notas(request, disciplina_id, aluno_id):
     context = RequestContext(request,{'disciplina': disciplina, 'aluno': aluno,
                                       'form':form})
     return render(request, "core/adicionar_notas.html", context)
+
+def acompanhamento_academico(request):
+    responsavel = request.user.responsavel
+    alunos = responsavel.alunos.all()
+
+    context = RequestContext(request,{'alunos': alunos})
+    return render(request, "core/acompanhamento_academico.html", context=context)
+
+def boletim_escolar(request, aluno_id):
+    responsavel = request.user.responsavel
+    aluno = Aluno.objects.get(pk=aluno_id)
+    notas = Notas.objects.filter(
+        disciplina__turma__ano_letivo__data_criacao__year=timezone
+                              .now().year, aluno=aluno)
+    ano_letivo = AnoLetivo.objects.get(data_criacao__year=timezone.now().year)
+    context = RequestContext(request,{'notas': notas, "aluno":aluno,
+                                      "ano_letivo":ano_letivo})
+    return render(request, "core/boletim_escolar.html", context=context)

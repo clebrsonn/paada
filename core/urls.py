@@ -25,4 +25,8 @@ urlpatterns = [
         name="alunos_disciplina"),
     url(r'^adicionar_notas/(?P<disciplina_id>[0-9]+)/(?P<aluno_id>[0-9]+)/$',
         views.adicionar_notas, name="alunos_disciplina"),
+    url(r'^acompanhamento_academico/', views.acompanhamento_academico,
+        name="acompanhamento_academico"),
+    url(r'^boletim_escolar/(?P<aluno_id>[0-9]+)/$', views.boletim_escolar,
+        name="boletim_escolar"),
 ]

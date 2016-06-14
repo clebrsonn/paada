@@ -1,0 +1,52 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Acompanhamento Acadêmico</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>{{ aluno.nome }} - {{ ano_letivo.titulo }}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-bordered">
+                <thead>
+                <th>Disciplina</th>
+                <th>Nota 1</th>
+                <th>Nota 2</th>
+                <th>Nota 3</th>
+                <th>Nota 4</th>
+                <th>Nota 5</th>
+                <th>Nota 6</th>
+                <th>Nota 7</th>
+                <th>Nota 8</th>
+                </thead>
+                <tbody>
+                {% for nota in notas %}
+                    <tr>
+                        <td>{{ nota.disciplina }}</td>
+                        <td>{{ nota.nota1 }}</td>
+                        <td>{{ nota.nota2 }}</td>
+                        <td>{{ nota.nota3 }}</td>
+                        <td>{{ nota.nota4 }}</td>
+                        <td>{{ nota.nota5 }}</td>
+                        <td>{{ nota.nota6 }}</td>
+                        <td>{{ nota.nota7 }}</td>
+                        <td>{{ nota.nota8 }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="2">Não existe alunos cadastrados.</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

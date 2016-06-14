@@ -55,7 +55,7 @@ class Responsavel(Pessoa):
 
 class Aluno(Pessoa):
     """Classe que representa um Aluno."""
-    responsavel = models.ForeignKey(Responsavel, related_name=u"responsavel",
+    responsavel = models.ForeignKey(Responsavel, related_name=u"alunos",
                                     verbose_name=u"Responsável")
     data_nascimento = models.DateField(null=True, verbose_name=u"Data de nascimento")
     turmas = models.ManyToManyField(u"Turma", related_name=u"alunos")
@@ -115,3 +115,6 @@ class Notas(models.Model):
                                 max_digits=4, decimal_places=2)
     nota8 = models.DecimalField(null=True, blank=True, verbose_name=u"Nota 8",
                                 max_digits=4, decimal_places=2)
+    def __unicode__(self):
+        return u"{aluno}-{disciplina}".format(aluno=self.aluno.nome,
+                                              disciplina=self.disciplina.nome_disciplina)
