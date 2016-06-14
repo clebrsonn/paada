@@ -29,4 +29,8 @@ urlpatterns = [
         name="acompanhamento_academico"),
     url(r'^boletim_escolar/(?P<aluno_id>[0-9]+)/$', views.boletim_escolar,
         name="boletim_escolar"),
+    url(r'^boletim_escolar/(?P<aluno_id>[0-9]+)/(?P<ano_letivo>[0-9]+)$', views.boletim_escolar,
+        name="boletim_escolar"),
+    url(r'^historico_escolar/(?P<aluno_id>[0-9]+)/$', views.historico_escolar,
+        name="historico_escolar"),
 ]

@@ -1,0 +1,32 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Histórico Escolar</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Escolha um Ano Letivo
+                </div>
+                <div class="panel-body">
+                    {% for ano_letivo in ano_letivos %}
+                        <div class="col-lg-3 col-md-3">
+                            <a href="/boletim_escolar/{{ aluno.pk }}/{{ ano_letivo.pk }}"
+                               class="btn btn-success disciplinas-botao">
+                                <span>
+                                    <i class="fa fa-book"></i>
+                                    {{ ano_letivo.titulo }}
+                                </span>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

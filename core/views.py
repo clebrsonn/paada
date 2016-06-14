@@ -64,13 +64,25 @@ def acompanhamento_academico(request):
     context = RequestContext(request,{'alunos': alunos})
     return render(request, "core/acompanhamento_academico.html", context=context)
 
-def boletim_escolar(request, aluno_id):
-    responsavel = request.user.responsavel
+def boletim_escolar(request, aluno_id, ano_letivo=None):
     aluno = Aluno.objects.get(pk=aluno_id)
+
+    if ano_letivo is None:
+        ano = timezone.now().year
+        ano_letivo = AnoLetivo.objects.get(data_criacao__year=ano)
+    else:
+        ano_letivo = AnoLetivo.objects.get(pk=int(ano_letivo))
+        ano = ano_letivo.data_criacao.year
+
     notas = Notas.objects.filter(
-        disciplina__turma__ano_letivo__data_criacao__year=timezone
-                              .now().year, aluno=aluno)
-    ano_letivo = AnoLetivo.objects.get(data_criacao__year=timezone.now().year)
+        disciplina__turma__ano_letivo__data_criacao__year=ano, aluno=aluno)
     context = RequestContext(request,{'notas': notas, "aluno":aluno,
                                       "ano_letivo":ano_letivo})
     return render(request, "core/boletim_escolar.html", context=context)
+
+def historico_escolar(request, aluno_id):
+    aluno = Aluno.objects.get(pk=aluno_id)
+    anos_letivos = AnoLetivo.objects.all()
+
+    context = RequestContext(request,{"aluno":aluno, "ano_letivos":anos_letivos})
+    return render(request, "core/historico_escolar.html", context=context)
