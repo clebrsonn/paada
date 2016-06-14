@@ -31,18 +31,18 @@
                 {% for nota in notas %}
                     <tr>
                         <td>{{ nota.disciplina }}</td>
-                        <td>{{ nota.nota1 }}</td>
-                        <td>{{ nota.nota2 }}</td>
-                        <td>{{ nota.nota3 }}</td>
-                        <td>{{ nota.nota4 }}</td>
-                        <td>{{ nota.nota5 }}</td>
-                        <td>{{ nota.nota6 }}</td>
-                        <td>{{ nota.nota7 }}</td>
-                        <td>{{ nota.nota8 }}</td>
+                        <td>{{ nota.nota1|default:"sem nota"}}</td>
+                        <td>{{ nota.nota2|default:"sem nota"}}</td>
+                        <td>{{ nota.nota3|default:"sem nota" }}</td>
+                        <td>{{ nota.nota4|default:"sem nota" }}</td>
+                        <td>{{ nota.nota5|default:"sem nota" }}</td>
+                        <td>{{ nota.nota6|default:"sem nota"}}</td>
+                        <td>{{ nota.nota7|default:"sem nota" }}</td>
+                        <td>{{ nota.nota8|default:"sem nota" }}</td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="2">Não existe alunos cadastrados.</td>
+                        <td colspan="9">Não possui Disciplinas</td>
                     </tr>
                 {% endfor %}
                 </tbody>
