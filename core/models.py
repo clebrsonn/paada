@@ -2,8 +2,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.html import format_html
-from django.core.urlresolvers import reverse
+
 
 class AnoLetivo(models.Model):
     """Classe que representa um Ano Letivo."""
@@ -97,6 +96,10 @@ class Turma(models.Model):
 
 
 class Notas(models.Model):
+    class Meta:
+        verbose_name = u"Nota"
+        verbose_name_plural = u"Notas"
+
     aluno = models.ForeignKey("Aluno")
     disciplina = models.ForeignKey("Disciplina")
     nota1 = models.DecimalField(null=True, blank=True, verbose_name=u"Nota 1",
@@ -118,3 +121,8 @@ class Notas(models.Model):
     def __unicode__(self):
         return u"{aluno}-{disciplina}".format(aluno=self.aluno.nome,
                                               disciplina=self.disciplina.nome_disciplina)
+
+
+class nota_agenda(models.Model):
+    disciplina = models.ForeignKey("Disciplina")
+    data = models.DateField()

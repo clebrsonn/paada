@@ -28,12 +28,14 @@ def escolher_disciplina(request):
     context = RequestContext(request,{'disciplinas': disciplinas})
     return render(request, "core/escolher_disciplina.html", context)
 
+
 @login_required
 def alunos_disciplina(request, disciplina_id):
     disciplina = Disciplina.objects.get(pk=disciplina_id)
     alunos = disciplina.turma.alunos.all()
     context = RequestContext(request,{'disciplina': disciplina, 'alunos': alunos})
     return render(request, "core/alunos_disciplina.html", context)
+
 
 @login_required
 def adicionar_notas(request, disciplina_id, aluno_id):
@@ -57,12 +59,14 @@ def adicionar_notas(request, disciplina_id, aluno_id):
                                       'form':form})
     return render(request, "core/adicionar_notas.html", context)
 
+
 def acompanhamento_academico(request):
     responsavel = request.user.responsavel
     alunos = responsavel.alunos.all()
 
     context = RequestContext(request,{'alunos': alunos})
     return render(request, "core/acompanhamento_academico.html", context=context)
+
 
 def boletim_escolar(request, aluno_id, ano_letivo=None):
     aluno = Aluno.objects.get(pk=aluno_id)
@@ -80,9 +84,28 @@ def boletim_escolar(request, aluno_id, ano_letivo=None):
                                       "ano_letivo":ano_letivo})
     return render(request, "core/boletim_escolar.html", context=context)
 
+
 def historico_escolar(request, aluno_id):
     aluno = Aluno.objects.get(pk=aluno_id)
     anos_letivos = AnoLetivo.objects.all()
 
     context = RequestContext(request,{"aluno":aluno, "ano_letivos":anos_letivos})
     return render(request, "core/historico_escolar.html", context=context)
+
+
+def agenda_virtual_professor(request):
+    professor = request.user.professor
+    disciplinas = professor.disciplinas\
+        .filter( turma__ano_letivo__data_criacao__year=timezone.now().year)
+
+    context = RequestContext(request,{"disciplinas":disciplinas})
+    return render(request, "core/agenda_professor_escolher_disciplina.html",
+                  context=context)
+
+
+def mensagem_pais(request):
+    return render(request, "core/mensagens_pais.html")
+
+
+def escrever_mensagem(request):
+    return render(request, "core/escrever_mensagem.html")

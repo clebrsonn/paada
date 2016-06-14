@@ -1,0 +1,94 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Caixa de entrada</h1>
+        </div>
+    </div>
+
+    <div id="list" class="row">
+        <div class="table-responsive col-md-12">
+            <table class="table table-striped" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th>Inbox</th>
+                    <th>Assunto:</th>
+                    <th>Enviado por:</th>
+                    <th>Data</th>
+                    <th class="actions">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="checkbox" name="mensagem" value="1"></td>
+                    <td>Seu filho é um baderneiro</td>
+                    <td>Professora Zefinha</td>
+                    <td>08/06/2016</td>
+                    <td class="actions">
+                        <a class="btn btn-success btn-xs"
+                           href="view.html">Visualizar</a>
+                        <a class="btn btn-danger btn-xs"
+                           href="#"
+                           data-toggle="modal"
+                           data-target="#delete-modal">Excluir</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="mensagem" value="2"></td>
+                    <td>Seu filho não faz tarefa</td>
+                    <td>Professora Cremilda</td>
+                    <td>08/06/2016</td>
+                    <td class="actions">
+                        <a class="btn btn-success btn-xs"
+                           href="view.html">Visualizar</a>
+                        <a class="btn btn-danger btn-xs"
+                           href="#"
+                           data-toggle="modal"
+                           data-target="#delete-modal">Excluir</a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" name="mensagem" value="3"></td>
+                    <td>Seu filho não respeita os professores</td>
+                    <td>Coordenacao</td>
+                    <td>08/06/2016</td>
+                    <td class="actions">
+                        <a class="btn btn-success btn-xs"
+                           href="view.html">Visualizar</a>
+                        <a class="btn btn-danger btn-xs"
+                           href="#"
+                           data-toggle="modal"
+                           data-target="#delete-modal">Excluir</a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" name="mensagem" value="3"></td>
+                    <td>Seu filho não compareceu a escola</td>
+                    <td>Coordenacao</td>
+                    <td>08/06/2016</td>
+                    <td class="actions">
+                        <a class="btn btn-success btn-xs"
+                           href="view.html">Visualizar</a>
+                        <a class="btn btn-danger btn-xs"
+                           href="#"
+                           data-toggle="modal"
+                           data-target="#delete-modal">Excluir</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+    <!-- /#list -->
+    <div class="col-md-12">
+        <a href="/escrever_mensagem/" class="btn btn-primary pull-right h2">
+            Escrever Mensagem
+        </a>
+    </div>
+{% endblock %}
