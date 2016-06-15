@@ -1,0 +1,9 @@
+rodar o composer install
+baixar o selenium standalone server (seleniumhq o site)
+
+java -jar selenium-server-standalone-XXX.jar -Dwebdriver.chrome.driver=chromedriver.exe
+
+XXX= versão do selenium
+
+
+php vendor/behat/behat/bin/behat
