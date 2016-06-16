@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -8,7 +10,7 @@ from django.utils import timezone
 
 from .autocomplete_views import * # importando Autocompletes
 from .models import Disciplina, Aluno, Notas
-from .forms import NotasForm
+from .forms import NotasForm, NotasAgendaForm
 
 @login_required
 def home(request):
@@ -93,19 +95,33 @@ def historico_escolar(request, aluno_id):
     return render(request, "core/historico_escolar.html", context=context)
 
 
-def agenda_virtual_professor(request):
+def agenda_virtual_professor1(request):
     professor = request.user.professor
     disciplinas = professor.disciplinas\
         .filter( turma__ano_letivo__data_criacao__year=timezone.now().year)
 
     context = RequestContext(request,{"disciplinas":disciplinas})
-    return render(request, "core/agenda_professor_escolher_disciplina.html",
+    return render(request, "core/agenda_virtual_professor_escolher_disciplina.html",
                   context=context)
+
+
+def escrever_nota_agenda_virtual(request, disciplina_id):
+    disciplina = Disciplina.objects.get(pk=disciplina_id)
+
+    if request.POST:
+        form = NotasAgendaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request,messages.SUCCESS,u"Notificação na Agenda "
+                                                          "Virtual criada com Sucesso!",
+                                 extra_tags='agenda_virtual')
+            return redirect(reverse("agenda_virtual_professor1",urlconf="core.urls"))
+    else:
+        form = NotasAgendaForm()
+
+    context = RequestContext(request,{"disciplina":disciplina,  "form":form})
+    return render(request, "core/escrever_agenda_virtual.html", context=context)
 
 
 def mensagem_pais(request):
     return render(request, "core/mensagens_pais.html")
-
-
-def escrever_mensagem(request):
-    return render(request, "core/escrever_mensagem.html")

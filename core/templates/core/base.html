@@ -13,9 +13,11 @@
     <link href="{% static "core/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
     <link href="{% static "core/css/metisMenu.min.css" %}" rel="stylesheet">
     <link href="{% static "core/css/sb-admin-2.css" %}" rel="stylesheet">
+    <link href="{% static "core/css/bootstrap-datepicker.css" %}" rel="stylesheet">
     <!-- Nossos css's-->
     <link href="{% static "core/css/professores.css" %}" rel="stylesheet">
     <link href="{% static "core/css/link_panels.css" %}" rel="stylesheet">
+    {% block css %} {% endblock %}
 </head>
 
 <body>
@@ -39,6 +41,8 @@
 <script src="{% static "core/js/metisMenu.min.js" %}"></script>
 <script src="{% static "core/js/sb-admin-2.js" %}"></script>
 <script src="{% static "core/js/fechando_alertas.js" %}"></script>
+<script src="{% static "core/js/bootstrap-datepicker.min.js" %}"></script>
+{% block script %}{% endblock %}
 </body>
 
 </html>

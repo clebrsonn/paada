@@ -123,6 +123,12 @@ class Notas(models.Model):
                                               disciplina=self.disciplina.nome_disciplina)
 
 
-class nota_agenda(models.Model):
+class Nota_agenda(models.Model):
     disciplina = models.ForeignKey("Disciplina")
-    data = models.DateField()
+    data = models.DateField(verbose_name="Data")
+    texto = models.TextField()
+
+    def __unicode__(self):
+        return u"{disciplina}-{data}".format(disciplina=self.disciplina.nome_disciplina,
+                                              data=self.data)
+

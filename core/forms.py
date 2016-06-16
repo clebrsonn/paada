@@ -6,7 +6,8 @@ from django import forms
 from django.contrib.auth.models import User
 from dal.autocomplete import ModelSelect2
 
-from .models import AnoLetivo, Aluno, Responsavel, Professor, Turma, Disciplina, Notas
+from .models import AnoLetivo, Aluno, Responsavel, Professor, Turma, Disciplina, Notas,\
+    Nota_agenda
 
 
 class AnoLetivoForm(forms.ModelForm):
@@ -80,4 +81,12 @@ class NotasForm(forms.ModelForm):
     class Meta:
         model = Notas
         fields = ("nota1","nota2","nota3","nota4","nota5","nota6","nota7","nota8")
+
+
+class NotasAgendaForm(forms.ModelForm):
+    data = forms.DateField()
+
+    class Meta:
+        model = Nota_agenda
+        fields = ("data","texto", "disciplina")
 

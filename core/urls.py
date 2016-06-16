@@ -34,8 +34,8 @@ urlpatterns = [
     url(r'^historico_escolar/(?P<aluno_id>[0-9]+)/$', views.historico_escolar,
         name="historico_escolar"),
     url(r'^mensagem_pais/$', views.mensagem_pais, name="mensagem_pais"),
-    url(r'^escrever_mensagem/$', views.escrever_mensagem, name="escrever_mensagem"),
-    url(r'^agenda_virtual_professor/$', views.agenda_virtual_professor,
-        name="agenda_virtual_professor"),
-
+    url(r'^agenda_virtual_professor/$', views.agenda_virtual_professor1,
+        name="agenda_virtual_professor1"),
+    url(r'^escrever_nota_agenda_virtual/(?P<disciplina_id>[0-9]+)/$',
+        views.escrever_nota_agenda_virtual, name="escrever_nota_agenda_virtual"),
 ]
