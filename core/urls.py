@@ -38,4 +38,9 @@ urlpatterns = [
         name="agenda_virtual_professor1"),
     url(r'^escrever_nota_agenda_virtual/(?P<disciplina_id>[0-9]+)/$',
         views.escrever_nota_agenda_virtual, name="escrever_nota_agenda_virtual"),
+
+    url(r'^agenda_virtual_pai/(?P<aluno_id>[0-9]+)/$',
+        views.agenda_virtual_pai, name="agenda_virtual_pai"),
+    url(r'^show_nota_agenda/(?P<disciplina_id>[0-9]+)/$',
+        views.show_nota_agenda, name="show_nota_agenda"),
 ]

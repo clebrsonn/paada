@@ -1,0 +1,41 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Agenda Virtual</h1>
+        </div>
+    </div>
+
+    <div class="row">
+    {{ disciplina.turma }}
+        <div class="table-responsive col-md-12">
+            <table class="table table-striped" cellspacing="0" cellpadding="0">
+                <thead>
+                <th>Anotação</th>
+                <th>Data</th>
+                <th>Ação</th>
+                </thead>
+                <tbody>
+                {% for nota_agenda in notas_agenda %}
+                    <tr>
+                        <td class="col-sm-6">{{ nota_agenda.texto|default:"sem anotação"  }}</td>
+                        <td class="col-sm-3">{{ nota_agenda.data|default:"sem anotação" }}</td>
+                    <td class="actions">
+                        <a class="btn btn-danger btn-xs"
+                           href="#"
+                           data-toggle="modal"
+                           data-target="#delete-modal">Excluir</a>
+                    </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="9">Não há nenhuma anotação na agenda</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}
