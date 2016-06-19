@@ -43,4 +43,7 @@ urlpatterns = [
         views.agenda_virtual_pai, name="agenda_virtual_pai"),
     url(r'^show_nota_agenda/(?P<disciplina_id>[0-9]+)/$',
         views.show_nota_agenda, name="show_nota_agenda"),
+    url(r'^deletar_nota_agenda/(?P<disciplina_id>[0-9]+)/(?P<nota_agenda_id>[0-9]+)/$',
+        views.deletar_nota_agenda, name="deletar_nota_agenda"),
+
 ]

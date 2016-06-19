@@ -143,5 +143,17 @@ def show_nota_agenda(request, disciplina_id):
     return render(request, "core/show_nota_agenda.html", context=context)
 
 
+def deletar_nota_agenda(request, disciplina_id, nota_agenda_id):
+    nota_agenda = \
+        Nota_agenda.objects.get(pk=nota_agenda_id)
+    # Nota_agenda.objects.all
+    nota_agenda.delete()
+    messages.add_message(request, messages.SUCCESS, u"Notificação na Agenda "
+                                                    "Virtual excluida com Sucesso!",
+                         extra_tags='agenda_virtual')
+
+    return redirect("core:show_nota_agenda", disciplina_id=disciplina_id)
+
+
 def mensagem_pais(request):
     return render(request, "core/mensagens_pais.html")
